@@ -5,33 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puzzle 1</title>
     <!-- Link jQuery library -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Link jQuery UI library -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Add any additional styling if needed -->
     <style>
         /* Add your CSS styling for puzzle pieces here */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
         .puzzle-container {
             position: relative;
-            width: 882px; /* Adjust the width and height according to your combined image size */
-            height: 588px;
+            width: 1200px; /* Adjust the width and height according to your combined image size */
+            height: 800px;
             overflow: hidden;
         }
         .puzzle-piece {
             position: absolute;
-            width: 294px; /* Set width of each puzzle piece */
-            height: 196px; /* Set height of each puzzle piece */
+            width: 150px; /* Set width of each puzzle piece */
+            height: 100px; /* Set height of each puzzle piece */
         }
-        /* Positioning for individual puzzle pieces */
-        #piece1 { top: 0; left: 0; }
-        #piece2 { top: 0; left: 294px; }
-        #piece3 { top: 0; left: 588px; }
-        #piece4 { top: 196px; left: 0; }
-        #piece5 { top: 196px; left: 294px; }
-        #piece6 { top: 196px; left: 588px; }
-        #piece7 { top: 392px; left: 0; }
-        #piece8 { top: 392px; left: 294px; }
-        #piece9 { top: 392px; left: 588px; }
+        #buttons-container {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+        button {
+            display: block;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -49,10 +52,12 @@
     </div>
     
     <!-- Movement buttons -->
-    <button id="upButton">Up</button>
-    <button id="downButton">Down</button>
-    <button id="leftButton">Left</button>
-    <button id="rightButton">Right</button>
+    <div id="buttons-container">
+        <button id="upButton">Up</button>
+        <button id="downButton">Down</button>
+        <button id="leftButton">Left</button>
+        <button id="rightButton">Right</button>
+    </div>
 
     <!-- Include the JavaScript file -->
     <script src="puzzle1.js"></script>

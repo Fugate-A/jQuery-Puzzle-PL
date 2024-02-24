@@ -1,24 +1,31 @@
 $(document).ready(function() {
     // Define the final positions for each puzzle piece
-    var positions = {
+    var finalPositions = {
         piece1: { top: 0, left: 0 },
-        piece2: { top: 0, left: 294 },
-        piece3: { top: 0, left: 588 },
-        piece4: { top: 196, left: 0 },
-        piece5: { top: 196, left: 294 },
-        piece6: { top: 196, left: 588 },
-        piece7: { top: 392, left: 0 },
-        piece8: { top: 392, left: 294 },
-        piece9: { top: 392, left: 588 }
+        piece2: { top: 0, left: 300 },
+        piece3: { top: 0, left: 600 },
+        piece4: { top: 200, left: 0 },
+        piece5: { top: 200, left: 300 },
+        piece6: { top: 200, left: 600 },
+        piece7: { top: 400, left: 0 },
+        piece8: { top: 400, left: 300 },
+        piece9: { top: 400, left: 600 }
     };
+
+    // Randomly select one puzzle piece to start in an incorrect position
+    var incorrectPieceId = 'piece' + Math.floor(Math.random() * 9) + 1;
+    var incorrectPosition = { top: Math.random() * 700, left: Math.random() * 1000 };
+    var finalPiecePosition = finalPositions[incorrectPieceId];
+    delete finalPositions[incorrectPieceId];
 
     // Function to animate a puzzle piece to its final position
     function animatePiece(pieceId, finalPosition) {
-        $('#' + pieceId).animate(finalPosition, 1000); // Adjust the duration as needed
+        $('#' + pieceId).animate(finalPosition, 2000); // Adjust the duration as needed
     }
 
     // Function to move a puzzle piece based on the direction
     function movePiece(pieceId, direction) {
+        if (pieceId !== incorrectPieceId) return; // Only move the incorrect piece
         var newPosition = { top: '+=0', left: '+=0' };
 
         switch (direction) {
@@ -41,27 +48,33 @@ $(document).ready(function() {
         $('#' + pieceId).animate(newPosition, 500);
     }
 
-    // Bind click event handlers to the movement buttons
+    // Bind click event handlers to the movement buttons for the incorrect piece
     $('#upButton').click(function() {
-        movePiece('piece1', 'up');
+        movePiece(incorrectPieceId, 'up');
     });
 
     $('#downButton').click(function() {
-        movePiece('piece1', 'down');
+        movePiece(incorrectPieceId, 'down');
     });
 
     $('#leftButton').click(function() {
-        movePiece('piece1', 'left');
+        movePiece(incorrectPieceId, 'left');
     });
 
     $('#rightButton').click(function() {
-        movePiece('piece1', 'right');
+        movePiece(incorrectPieceId, 'right');
     });
 
-    // Call the animatePiece function for each puzzle piece to move them to their final positions
-    $.each(positions, function(pieceId, finalPosition) {
-        if (pieceId !== 'piece1') {
-            animatePiece(pieceId, finalPosition);
+    // Animate puzzle pieces to random positions
+    $('.puzzle-piece').each(function() {
+        var top = Math.random() * 700; // Adjust the range as needed
+        var left = Math.random() * 1000; // Adjust the range as needed
+        $(this).css({ top: top, left: left });
+
+        // Check if the piece is not the incorrect one
+        if ($(this).attr('id') !== incorrectPieceId) {
+            // Animate the piece to its final position
+            animatePiece($(this).attr('id'), finalPositions[$(this).attr('id')]);
         }
     });
 });
