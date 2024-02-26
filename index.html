@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Home</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .puzzle {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .puzzle:nth-child(odd) {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="puzzle" id="puzzle1">
+            <h2>Puzzle 1: Animation</h2>
+        </div>
+        <div class="puzzle" id="puzzle2">
+            <h2>Puzzle 2: Draggable</h2>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#puzzle1").click(function(){
+                window.location.href = "puzzle1.html";
+            });
+            $("#puzzle2").click(function(){
+                window.location.href = "puzzle2.html";
+            });
+        });
+    </script>
+</body>
+</html>
