@@ -11,10 +11,15 @@
     <!-- Add any additional styling if needed -->
     <style>
         /* Add your CSS styling for puzzle pieces here */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Times New Roman", Times, serif;
+        }
         .puzzle-container {
             position: relative;
-            width: 882px; /* Adjust the width and height according to your combined image size */
-            height: 588px;
+            width: 100%;
+            height: 600px; /* Adjust the height according to your combined image size */
             overflow: hidden;
         }
         .puzzle-piece {
@@ -22,20 +27,49 @@
             width: 294px; /* Set width of each puzzle piece */
             height: 196px; /* Set height of each puzzle piece */
         }
+        .puzzle-piece img {
+            width: 100%; /* Scale down the image width to fit the puzzle piece */
+            height: 100%; /* Scale down the image height to fit the puzzle piece */
+        }
+        #full-image-container {
+            position: absolute;
+            top: 50px; /* Adjust the top position */
+            right: 20px;
+            width: 300px; /* Adjust the width */
+            height: 200px; /* Adjust the height */
+        }
+        #full-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+        #title {
+            position: absolute;
+            top: 10px; /* Adjust the top position */
+            right: 20px;
+            text-align: center;
+            font-size: 32px;
+        }
     </style>
 </head>
 <body>
+    <div id="title">Statue Of Liberty</div>
+
+    <div id="full-image-container">
+        <img id="full-image" src="Images/Statue/StatueOfLibertyCloudSkyFull.jpg" alt="Full Image">
+    </div>
+
     <div class="puzzle-container">
         <!-- Puzzle pieces -->
-        <div id="piece1" class="puzzle-piece"><img src="Images/Skyline/image_part_001.jpg" alt="Piece 1"></div>
-        <div id="piece2" class="puzzle-piece"><img src="Images/Skyline/image_part_002.jpg" alt="Piece 2"></div>
-        <div id="piece3" class="puzzle-piece"><img src="Images/Skyline/image_part_003.jpg" alt="Piece 3"></div>
-        <div id="piece4" class="puzzle-piece"><img src="Images/Skyline/image_part_004.jpg" alt="Piece 4"></div>
-        <div id="piece5" class="puzzle-piece"><img src="Images/Skyline/image_part_005.jpg" alt="Piece 5"></div>
-        <div id="piece6" class="puzzle-piece"><img src="Images/Skyline/image_part_006.jpg" alt="Piece 6"></div>
-        <div id="piece7" class="puzzle-piece"><img src="Images/Skyline/image_part_007.jpg" alt="Piece 7"></div>
-        <div id="piece8" class="puzzle-piece"><img src="Images/Skyline/image_part_008.jpg" alt="Piece 8"></div>
-        <div id="piece9" class="puzzle-piece"><img src="Images/Skyline/image_part_009.jpg" alt="Piece 9"></div>
+        <div id="piece1" class="puzzle-piece"><img src="Images/Statue/image_part_001.jpg" alt="Piece 1"></div>
+        <div id="piece2" class="puzzle-piece"><img src="Images/Statue/image_part_002.jpg" alt="Piece 2"></div>
+        <div id="piece3" class="puzzle-piece"><img src="Images/Statue/image_part_003.jpg" alt="Piece 3"></div>
+        <div id="piece4" class="puzzle-piece"><img src="Images/Statue/image_part_004.jpg" alt="Piece 4"></div>
+        <div id="piece5" class="puzzle-piece"><img src="Images/Statue/image_part_005.jpg" alt="Piece 5"></div>
+        <div id="piece6" class="puzzle-piece"><img src="Images/Statue/image_part_006.jpg" alt="Piece 6"></div>
+        <div id="piece7" class="puzzle-piece"><img src="Images/Statue/image_part_007.jpg" alt="Piece 7"></div>
+        <div id="piece8" class="puzzle-piece"><img src="Images/Statue/image_part_008.jpg" alt="Piece 8"></div>
+        <div id="piece9" class="puzzle-piece"><img src="Images/Statue/image_part_009.jpg" alt="Piece 9"></div>
     </div>
 
     <!-- Include the JavaScript file -->
