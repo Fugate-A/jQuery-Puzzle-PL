@@ -4,42 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puzzle 1</title>
-    <!-- Link jQuery library -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Add any additional styling if needed -->
+    
     <style>
-        /* Add your CSS styling for puzzle pieces here */
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: "Times New Roman", Times, serif;
         }
         .puzzle-container {
             position: relative;
-            width: 1200px; /* Adjust the width and height according to your combined image size */
-            height: 800px;
+            width: 100%;
+            height: 600px; 
             overflow: hidden;
         }
         .puzzle-piece {
             position: absolute;
-            width: 150px; /* Set width of each puzzle piece */
-            height: 100px; /* Set height of each puzzle piece */
+            width: 150px; 
+            height: 100px; 
         }
         #buttons-container {
             position: absolute;
-            top: 50%;
+            bottom: 10px; 
             right: 20px;
-            transform: translateY(-50%);
         }
         button {
             display: block;
             margin-bottom: 10px;
         }
+        #full-image-container {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            width: 300px; 
+            height: 200px; 
+        }
+        #full-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+        #title {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            text-align: center;
+            font-size: 32px;
+        }
     </style>
 </head>
 <body>
+    <div id="title">One World Trade</div>
+
+    <div id="full-image-container">
+        <img id="full-image" src="Images/Skyline/OneWorldTradeSkylineImageFull.jpg" alt="Full Image">
+    </div>
+
     <div class="puzzle-container">
-        <!-- Puzzle pieces -->
         <div id="piece1" class="puzzle-piece"><img src="Images/Skyline/image_part_001.jpg" alt="Piece 1"></div>
         <div id="piece2" class="puzzle-piece"><img src="Images/Skyline/image_part_002.jpg" alt="Piece 2"></div>
         <div id="piece3" class="puzzle-piece"><img src="Images/Skyline/image_part_003.jpg" alt="Piece 3"></div>
@@ -51,15 +73,86 @@
         <div id="piece9" class="puzzle-piece"><img src="Images/Skyline/image_part_009.jpg" alt="Piece 9"></div>
     </div>
     
-    <!-- Movement buttons -->
     <div id="buttons-container">
         <button id="upButton">Up</button>
         <button id="downButton">Down</button>
         <button id="leftButton">Left</button>
         <button id="rightButton">Right</button>
+        <label for="stepSlider">Step Size (pixels):</label>
+        <input type="range" id="stepSlider" min="1" max="100" value="1">
+        <span id="stepValue">1</span>
     </div>
 
-    <!-- Include the JavaScript file -->
-    <script src="puzzle1.js"></script>
+    <script>
+        $(document).ready(function() {
+            var finalPositions = {
+                piece1: { top: 0, left: 0 },
+                piece2: { top: 0, left: 300 },
+                piece3: { top: 0, left: 600 },
+                piece4: { top: 200, left: 0 },
+                piece5: { top: Math.random() * 600, left: Math.random() * 900 }, 
+                piece6: { top: 200, left: 600 },
+                piece7: { top: 400, left: 0 },
+                piece8: { top: 400, left: 300 },
+                piece9: { top: 400, left: 600 }
+            };
+
+            function animatePiece(pieceId, finalPosition) {
+                $('#' + pieceId).animate(finalPosition, 2000);
+            }
+
+            function movePiece(pieceId, direction, step) {
+                var newPosition = { top: '+=0', left: '+=0' };
+
+                switch (direction) {
+                    case 'up':
+                        newPosition.top = `-=${step}`;
+                        break;
+                    case 'down':
+                        newPosition.top = `+=${step}`;
+                        break;
+                    case 'left':
+                        newPosition.left = `-=${step}`;
+                        break;
+                    case 'right':
+                        newPosition.left = `+=${step}`;
+                        break;
+                    default:
+                        return;
+                }
+
+                $('#' + pieceId).animate(newPosition, 500);
+            }
+
+            $('#upButton').click(function() {
+                var step = $('#stepSlider').val();
+                movePiece('piece5', 'up', step);
+            });
+
+            $('#downButton').click(function() {
+                var step = $('#stepSlider').val();
+                movePiece('piece5', 'down', step);
+            });
+
+            $('#leftButton').click(function() {
+                var step = $('#stepSlider').val();
+                movePiece('piece5', 'left', step);
+            });
+
+            $('#rightButton').click(function() {
+                var step = $('#stepSlider').val();
+                movePiece('piece5', 'right', step);
+            });
+
+            $('#stepSlider').on('input', function() {
+                $('#stepValue').text($(this).val());
+            });
+
+            $('.puzzle-piece').each(function() {
+                var pieceId = $(this).attr('id');
+                animatePiece(pieceId, finalPositions[pieceId]);
+            });
+        });
+    </script>
 </body>
 </html>
