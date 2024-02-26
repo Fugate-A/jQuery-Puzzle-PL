@@ -9,6 +9,7 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            font-family: Arial, sans-serif;
         }
 
         .container {
@@ -23,19 +24,52 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
         }
 
         .puzzle:nth-child(odd) {
-            background-color: #f0f0f0;
+            background-color: #bfcac4; /* Changed to match provided color values */
+        }
+
+        .puzzle img {
+            max-width: 70%;
+            height: auto;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .puzzle h2 {
+            position: absolute;
+            z-index: 1;
+            color: #fff;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            /* Added black outline */
+            -webkit-text-stroke: 1px black;
+            text-stroke: 1px black;
+        }
+
+        .puzzle:hover {
+            transform: scale(1.03);
+            border-color: #39cccc;
+        }
+
+        .puzzle:hover img {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="puzzle" id="puzzle1">
+        <div class="puzzle" id="puzzle1" style="background-color: #b0c4de;">
+            <img src="Images/Skyline/OneWorldTradeSkylineImageFull.jpg" alt="Puzzle 1 Image">
             <h2>Puzzle 1: Animation</h2>
         </div>
-        <div class="puzzle" id="puzzle2">
+        <div class="puzzle" id="puzzle2" style="background-color: #bfcac4;"> <!-- Changed to match provided color values -->
+            <img src="Images/Statue/StatueOfLibertyCloudSkyFull.jpg" alt="Puzzle 2 Image">
             <h2>Puzzle 2: Draggable</h2>
         </div>
     </div>
