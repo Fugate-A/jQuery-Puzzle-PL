@@ -52,6 +52,22 @@
             text-align: center;
             font-size: 32px;
         }
+        #go-home-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: #b0c4de;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        #go-home-button:hover {
+            background-color: #0074d9;
+        }
     </style>
 </head>
 <body>
@@ -83,7 +99,13 @@
         <span id="stepValue">1</span>
     </div>
 
+    <button id="go-home-button" onclick="goToMainPage()">Go Home</button>
+
     <script>
+        function goToMainPage() {
+            window.location.href = "index.html";
+        }
+
         $(document).ready(function() {
             var finalPositions = {
                 piece1: { top: 0, left: 0 },
